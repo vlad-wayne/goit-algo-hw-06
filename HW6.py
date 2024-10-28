@@ -15,7 +15,7 @@ class Phone(Field):
     def __init__(self, value):
         super().__init__(value)
         if not self.is_valid(value):
-            raise ValueError("Invalid nummer. Should contain 10 digits.")
+            raise ValueError("Invalid number. Should contain 10 digits.")
         super().__init__(value)
 
     @staticmethod
@@ -38,6 +38,9 @@ class Record:
             raise ValueError("The phone is absent ")
     
     def edit_phone(self, old_phone, new_phone):
+        if not Phone.is_valid(new_phone):
+            raise ValueError("Invalid number. Should contain 10 digits.")
+            
         phone_obj = self.find_phone(old_phone)
         if phone_obj:
             self.remove_phone(old_phone)
